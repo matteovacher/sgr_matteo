@@ -36,7 +36,7 @@ def connect_target_node_to_layer(cppn, target_node_coordinate, source_layer_coor
             incoming_connections.append((node_dict[tuple(source_node_coordinate)], weight))
     return incoming_connections
     
-def create_phenotype(cppn, substrate, activation_function, out_activation_function, max_weight, output_node_idx) :
+def create_phenotype_network(cppn, substrate, activation_function="tanh", out_activation_function="identity", max_weight=1, output_node_idx=0) :
     """This function takes the cppn, a substrate defining the substrate structure. Then, it creates the phenotype, 
     its structure must be a dictionary following the format node_dict ={coordinates of the node : index of the node}. 
     then the phenotype ie ann is also defined by node_evaluations, an array of the format [[index of the node, activation function, agregation_function, bias, response, incoming_connections], ...]
@@ -67,8 +67,8 @@ def create_phenotype(cppn, substrate, activation_function, out_activation_functi
             node_evaluations.append(evaluation)
         idx_current_source_layer += 1
 
-    input_nodes = [node_dict[node] for node in substrate.input_coordinates]
-    output_nodes = [node_dict[node] for node in substrate.output_coordinates]
+    input_nodes = [node_dict[tuple(node)] for node in substrate.input_coordinates]
+    output_nodes = [node_dict[tuple(node)] for node in substrate.output_coordinates]
     return neat.nn.FeedForwardNetwork(input_nodes, output_nodes, node_evaluations)
 
 
