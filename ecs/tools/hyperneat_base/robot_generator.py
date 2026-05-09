@@ -1,5 +1,6 @@
 import numpy as np 
-from evogym import is_connected, has_actuator
+from evogym import is_connected, has_actuator, get_full_connectivity
+
 
 
 class RobotGenerator :
@@ -19,5 +20,8 @@ class RobotGenerator :
     def is_valid_robot(self, robot) : 
         """A valid robot is a robot that is connected and has at least one actuator. We use the functions provided by evogym to check these constraints."""
         return is_connected(robot) and has_actuator(robot)
+    
+    def get_full_connectivity(self, robot) : 
+        return get_full_connectivity(robot)
             
     

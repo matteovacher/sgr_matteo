@@ -15,14 +15,14 @@ class ComponentRegistry :
     def add_genome(self, entity_id, genome) : 
         self.genome_registry[entity_id] = GenomeComponent(genome)
     
-    def add_body(self, entity_id, body) : 
-        self.body_registry[entity_id] = BodyComponent(body)
+    def add_body(self, entity_id, body, connections) : 
+        self.body_registry[entity_id] = BodyComponent(body, connections)
     
-    def add_controller(self, entity_id, controller) : 
-        self.controller_registry[entity_id] = ControllerNetworkComponent(controller)
+    def add_controller_network(self, entity_id, controller_network) : 
+        self.controller_registry[entity_id] = ControllerNetworkComponent(controller_network)
 
-    def add_fitness(self, entity_id, fitness) : 
-        self.fitness_registry[entity_id] = FitnessComponent(fitness)
+    def add_fitness(self, entity_id, fitness, finished) : 
+        self.fitness_registry[entity_id] = FitnessComponent(fitness, finished)
     def add_morphology_network(self, entity_id, morphology_network) : 
         self.morphology_network_registry[entity_id] = MorphologyNetworkComponent(morphology_network) 
     
